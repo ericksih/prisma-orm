@@ -13,4 +13,6 @@ datasource db {
 model User {
   id       Int    @id @default(autoincrement()) // Prisma automatically generates this
   username String @unique @db.VarChar(255) // The @db.VarChar(255) is important for Prisma to know the size of the column
+
+  @@map(name: "user")
 }
