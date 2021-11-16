@@ -13,20 +13,6 @@ datasource db {
 model User {
   id       Int    @id @default(autoincrement()) // Prisma automatically generates this
   username String @unique @db.VarChar(255) // The @db.VarChar(255) is important for Prisma to know the size of the column
-  posts    Post[] // Prisma automatically generates this relation field for you (see below) 
-
 
   @@map(name: "user")
-}
-
-model Post {
-  id        Int      @id @default(autoincrement()) // Prisma automatically generates this
-  title     String
-  post      String   @db.VarChar(500) // The @db.VarChar(500) is important for Prisma to know the size of the column
-  createdAt DateTime @default(now()) // Prisma automatically sets this to the current date and time
-  updatedAt DateTime @updatedAt // Prisma automatically sets this to the current date and time
-  user_id   Int
-  user      User     @relation(fields: [user_id], references: [id]) // Prisma automatically sets this to the current user
-
-  @@map(name: "post")
 }
