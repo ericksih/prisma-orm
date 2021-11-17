@@ -9,12 +9,21 @@ router.get("/", async (req, res) => {
   const users = await user.findMany({
     // findMany is a method that we can use to find all users in our database
     select: {
+      id: true,
       username: true,
+      posts: {
+        select: {
+          id: true,
+          title: true,
+          post: true,
+        },
+      },
     },
   });
   res.json(users); // res.json is a method that we can use to send a response to the client
 });
 
+// post user
 router.post("/", async (req, res) => {
   // req is the request object, res is the response object
   const { username } = req.body; // req.body is the body of the request
